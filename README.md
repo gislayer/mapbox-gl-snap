@@ -2,17 +2,31 @@
 
 `MapboxSnap` is a utility that works with Mapbox GL JS to enable snapping to specific geometric points, edges, or midpoints when drawing on the map. This library is designed to enhance accuracy during drawing by allowing users to snap to nearby features easily.
 
-## Features
-
-- **Layer-Based Snapping**: Operates on specific layers, allowing you to snap only to the geometries within these layers.
-- **Rule-Based Snapping**: Allows snapping based on rules such as vertex, edge, or line middle. The snapping process respects these rules in order.
-- **Dynamic Snap Radius**: The snap radius is configurable, allowing control over how close the points need to be for snapping to occur.
-
 ## Installation
 
 ```bash
 npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-snap
 ```
+
+## Importing the Library
+
+Depending on whether you are using ES Modules (`import`) or CommonJS (`require`), you should import the `MapboxSnap` library as follows:
+
+- **For ES Modules (`import`)**:
+  ```javascript
+  import MapboxSnap from 'mapbox-gl-snap/dist/cjs/MapboxSnap';
+  ```
+
+- **For CommonJS (`require`)**:
+  ```javascript
+  const MapboxSnap = require('mapbox-gl-snap/dist/esm/MapboxSnap');
+  ```
+
+## Features
+
+- **Layer-Based Snapping**: Operates on specific layers, allowing you to snap only to the geometries within these layers.
+- **Rule-Based Snapping**: Allows snapping based on rules such as vertex, edge, or line middle. The snapping process respects these rules in order.
+- **Dynamic Snap Radius**: The snap radius is configurable, allowing control over how close the points need to be for snapping to occur.
 
 ## TypeScript Declaration
 
@@ -57,7 +71,7 @@ First, you need to create a Mapbox GL JS map and add the `MapboxDraw` control fo
 ```javascript
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import MapboxSnap from 'mapbox-snap';
+import MapboxSnap from 'mapbox-gl-snap';
 
 const map = new mapboxgl.Map({
   container: 'map',
@@ -124,5 +138,4 @@ const mapboxSnap = new MapboxSnap({
 ## License
 
 This project is licensed under the MIT License.
-
 Author: Ali Kilic - ali.kilic@gislayer.com
