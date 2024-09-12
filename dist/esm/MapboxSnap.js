@@ -37,7 +37,6 @@ var MapboxSnap = /** @class */ (function () {
         this.addEvents();
     }
     MapboxSnap.prototype.changeSnappedPoints = function () {
-        debugger;
         var drawings = this.drawing.getAll();
         var arr = [];
         for (var i = 0; i < drawings.features.length; i++) {
@@ -167,7 +166,6 @@ var MapboxSnap = /** @class */ (function () {
     };
     MapboxSnap.prototype.addEvents = function () {
         var _this = this;
-        debugger;
         this.map.on('mousemove', function (e) {
             _this.snapToClosestPoint(e);
         });
@@ -209,7 +207,6 @@ var MapboxSnap = /** @class */ (function () {
     };
     MapboxSnap.prototype.drawingSnapCheck = function () {
         if (this.snapStatus) {
-            debugger;
             var source = this.map.getSource('mapbox-gl-draw-hot');
             var coord = [this.snapCoords[0], this.snapCoords[1]];
             var lng = coord[0].toFixed(6);
