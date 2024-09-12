@@ -1,0 +1,17 @@
+{
+ "compilerOptions": {
+  "module": "CommonJS",
+  "target": "ES5",
+  "moduleResolution":"Node",
+  "outDir": "dist/cjs",
+  "declaration": true,
+  "declarationDir": "dist/cjs",
+  "sourceMap": true,
+  "strict": true,
+  "esModuleInterop": true,
+  "skipLibCheck": true,
+  "forceConsistentCasingInFileNames": true
+ },
+ "include": ["src/**/*"],
+ "exclude": ["node_modules", "dist"]
+}
