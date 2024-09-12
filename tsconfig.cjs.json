@@ -2,6 +2,7 @@
  "compilerOptions": {
   "module": "CommonJS",
   "target": "ES5",
+  "typeRoots": ["./types", "./node_modules/@types"],
   "moduleResolution":"Node",
   "outDir": "dist/cjs",
   "declaration": true,
@@ -12,6 +13,6 @@
   "skipLibCheck": true,
   "forceConsistentCasingInFileNames": true
  },
- "include": ["src/**/*"],
+ "include": ["src/**/*",  "types/**/*.d.ts"],
  "exclude": ["node_modules", "dist"]
 }

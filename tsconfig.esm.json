@@ -3,6 +3,7 @@
     "module": "ESNext",
     "target": "ES5",
     "moduleResolution":"Node",
+    "typeRoots": ["./types", "./node_modules/@types"],
     "outDir": "dist/esm",
     "declaration": true,
     "declarationDir": "dist/esm",
@@ -12,6 +13,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "types/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 }
