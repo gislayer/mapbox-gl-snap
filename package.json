@@ -1,6 +1,6 @@
 {
     "name": "mapbox-gl-snap",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "A utility to snap points to vertices, edges, or midpoints on a Mapbox GL JS.",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.esm.js",
