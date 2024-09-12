@@ -20,10 +20,12 @@ import midpoint from '@turf/midpoint';
 var MapboxSnap = /** @class */ (function () {
     function MapboxSnap(options) {
         var _a;
+        this.onSnapped = function () { };
         this.status = (_a = options.status) !== null && _a !== void 0 ? _a : false;
         this.map = options.map;
         this.drawing = options.drawing;
         this.options = options.options;
+        this.onSnapped = options.onSnapped !== undefined ? this.onSnapped : function () { };
         this.features = {};
         this.snapStatus = false;
         this.snapCoords = [];
@@ -55,7 +57,11 @@ var MapboxSnap = /** @class */ (function () {
                 }
             }
         }
-        this.drawing.set({ type: 'FeatureCollection', features: arr });
+        var fc = { type: 'FeatureCollection', features: arr };
+        this.drawing.set(fc);
+        if (this.onSnapped) {
+            this.onSnapped(fc);
+        }
     };
     MapboxSnap.prototype.isPointSnapped = function (p1, p2) {
         var dist = distance(TPoint(p1), TPoint(p2), { units: 'meters' });

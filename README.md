@@ -34,8 +34,14 @@ If you're using TypeScript, you might need to manually add the following declara
 
 ```typescript
 declare module 'mapbox-gl-snap' {
-  import { Map } from 'mapbox-gl';
+  import {
+    Map
+  } from 'mapbox-gl';
   import MapboxDraw from '@mapbox/mapbox-gl-draw';
+  import {
+    FeatureCollection,
+    Geometry
+  } from 'geojson';
 
   export interface MapboxSnapOptions {
     layers: string[];
@@ -47,7 +53,8 @@ declare module 'mapbox-gl-snap' {
     map: Map;
     drawing: MapboxDraw;
     options: MapboxSnapOptions;
-    status?: boolean;
+    status ? : boolean;
+    onSnapped ? : (features: FeatureCollection < Geometry > ) => void;
   }
 
   class MapboxSnap {
@@ -103,6 +110,9 @@ map.on('style.load', () => {
       layers: ['layer1', 'layer2'],  // Array of layer IDs to snap to
       radius: 15,  // Snap radius in pixels
       rules: ['vertex', 'middle', 'edge']  // Snap rules
+    },
+    onSnapped:(fc:FeatureCollection)=>{
+      // use on here
     }
   });
 });
@@ -131,6 +141,9 @@ const mapboxSnap = new MapboxSnap({
     layers: ['layer1', 'layer2'],  // Layers to snap to
     radius: 20,  // Snap radius in pixels
     rules: ['vertex', 'edge'],  // Only snap to vertices and edges
+  },
+  onSnapped:(fc:FeatureCollection)=>{
+      // you can get snapped geometries
   }
 });
 ```
