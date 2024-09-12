@@ -20,12 +20,15 @@ import midpoint from '@turf/midpoint';
 var MapboxSnap = /** @class */ (function () {
     function MapboxSnap(options) {
         var _a;
-        this.onSnapped = function () { };
         this.status = (_a = options.status) !== null && _a !== void 0 ? _a : false;
         this.map = options.map;
         this.drawing = options.drawing;
         this.options = options.options;
-        this.onSnapped = options.onSnapped !== undefined ? this.onSnapped : function () { };
+        this.onSnapped = function (fc) {
+            if (options.onSnapped !== undefined) {
+                options.onSnapped(fc);
+            }
+        };
         this.features = {};
         this.snapStatus = false;
         this.snapCoords = [];

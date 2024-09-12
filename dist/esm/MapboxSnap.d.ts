@@ -1,7 +1,7 @@
 /// <reference types="mapbox__mapbox-gl-draw" />
 import { MapMouseEvent, LngLat } from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
-import { Feature, FeatureCollection, Geometry } from 'geojson';
+import { Feature, Geometry } from 'geojson';
 interface SpatialResult {
     coords: number[];
     dist: number;
@@ -32,7 +32,7 @@ declare class MapboxSnap {
     status: boolean;
     features: Record<string, SnapSettings>;
     radiusInMeters: number;
-    onSnapped: (features: FeatureCollection<Geometry>) => void;
+    onSnapped: Function;
     constructor(options: MapboxSnapProps);
     changeSnappedPoints(): void;
     isPointSnapped(p1: number[], p2: number[]): boolean;

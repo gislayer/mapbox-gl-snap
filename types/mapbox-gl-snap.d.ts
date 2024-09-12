@@ -19,7 +19,7 @@ declare module 'mapbox-gl-snap' {
     drawing: MapboxDraw;
     options: MapboxSnapOptions;
     status ? : boolean;
-    onSnapped ? : (features: FeatureCollection < Geometry > ) => void;
+    onSnapped ? : Function;
   }
 
   class MapboxSnap {
