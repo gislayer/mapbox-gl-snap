@@ -14,6 +14,38 @@
 npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-snap
 ```
 
+## TypeScript Declaration
+
+If you're using TypeScript, you might need to manually add the following declaration for the `mapbox-gl-snap` module:
+
+```typescript
+declare module 'mapbox-gl-snap' {
+  import { Map } from 'mapbox-gl';
+  import MapboxDraw from '@mapbox/mapbox-gl-draw';
+
+  export interface MapboxSnapOptions {
+    layers: string[];
+    rules: ('vertex' | 'edge' | 'middle')[];
+    radius: number;
+  }
+
+  export interface MapboxSnapProps {
+    map: Map;
+    drawing: MapboxDraw;
+    options: MapboxSnapOptions;
+    status?: boolean;
+  }
+
+  class MapboxSnap {
+    constructor(options: MapboxSnapProps);
+    setStatus(status: boolean): void;
+    getMe(): MapboxSnap;
+  }
+
+  export default MapboxSnap;
+}
+```
+
 ## Usage
 
 Below is an example of how to use the `MapboxSnap` library.
@@ -92,4 +124,5 @@ const mapboxSnap = new MapboxSnap({
 ## License
 
 This project is licensed under the MIT License.
-Author : Ali Kilic - ali.kilic@gislayer.com
+
+Author: Ali Kilic - ali.kilic@gislayer.com
