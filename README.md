@@ -1,0 +1,95 @@
+# MapboxSnap
+
+`MapboxSnap` is a utility that works with Mapbox GL JS to enable snapping to specific geometric points, edges, or midpoints when drawing on the map. This library is designed to enhance accuracy during drawing by allowing users to snap to nearby features easily.
+
+## Features
+
+- **Layer-Based Snapping**: Operates on specific layers, allowing you to snap only to the geometries within these layers.
+- **Rule-Based Snapping**: Allows snapping based on rules such as vertex, edge, or line middle. The snapping process respects these rules in order.
+- **Dynamic Snap Radius**: The snap radius is configurable, allowing control over how close the points need to be for snapping to occur.
+
+## Installation
+
+```bash
+npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-snap
+```
+
+## Usage
+
+Below is an example of how to use the `MapboxSnap` library.
+
+### 1. Creating the Map and Drawing Objects
+
+First, you need to create a Mapbox GL JS map and add the `MapboxDraw` control for drawing.
+
+```javascript
+import mapboxgl from 'mapbox-gl';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+import MapboxSnap from 'mapbox-snap';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: `mapbox://styles/mapbox/dark-v11`,
+  center: [0, 0],
+  zoom: 16,
+  pitch: 30,
+  bearing: 45,
+});
+
+map.on('style.load', () => {
+  const drawing = new MapboxDraw({
+    displayControlsDefault: false,
+    controls: {
+      polygon: true,
+      line_string: true,
+      point: true,
+      trash: true,
+    },
+  });
+
+  map.addControl(drawing);
+  
+  // Initialize MapboxSnap Library
+  const mapboxSnap = new MapboxSnap({
+    map: map,
+    drawing: drawing,
+    options: {
+      layers: ['layer1', 'layer2'],  // Array of layer IDs to snap to
+      radius: 15,  // Snap radius in pixels
+      rules: ['vertex', 'middle', 'edge']  // Snap rules
+    }
+  });
+});
+```
+
+### 2. Understanding Snap Rules
+
+- **`layers`**: An array of layer IDs where the snapping will occur. The snapping is limited to geometries within these layers.
+  
+- **`rules`**: An array defining the snap rules, which are checked in order:
+  - **`vertex`**: Snaps to the vertex points of the geometry.
+  - **`middle`**: Snaps to the middle points of lines.
+  - **`edge`**: Snaps to the edges of lines.
+  
+  The rules are applied sequentially. For instance, with `rules: ['vertex', 'middle', 'edge']`, the snapping will first attempt to snap to a vertex. If a vertex is found, it will snap to that and stop. If not, it will proceed to check the middle and then the edge.
+
+### 3. Customizing the Snap Process
+
+When creating the `MapboxSnap` instance, you can customize the snap radius (`radius`) and rules (`rules`). The `radius` specifies how close a point must be to snap to it, measured in pixels.
+
+```javascript
+const mapboxSnap = new MapboxSnap({
+  map: map,
+  drawing: drawing,
+  options: {
+    layers: ['layer1', 'layer2'],  // Layers to snap to
+    radius: 20,  // Snap radius in pixels
+    rules: ['vertex', 'edge'],  // Only snap to vertices and edges
+  }
+});
+```
+
+## License
+
+This project is licensed under the MIT License.
+Author : Ali Kilic - ali.kilic@gislayer.com
