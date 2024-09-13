@@ -4,7 +4,7 @@
 
 `MapboxSnap` is a utility that works with Mapbox GL JS to enable snapping to specific geometric points, edges, or midpoints when drawing on the map. This library is designed to enhance accuracy during drawing by allowing users to snap to nearby features easily.
 
-![mapbox-gl-snap](https://akilic.com/photos/blog/23/mapbox-gl-snap.png)
+![mapbox-gl-snap](https://akilic.com/photos/blog/23/mapbox-gl-snap3-gif.gif)
 
 ## Installation
 
