@@ -160,8 +160,13 @@ const mapboxSnap = new MapboxSnap({
 
 ## License
 
+
 This project is licensed under the MIT License.
+
 Author: Ali Kilic - ali.kilic@gislayer.com
-Author Web Site :   [Ali Kilic Blog Page](https://akilic.com)
-Project GitHub :   [mapbox-gl-snap](https://github.com/gislayer/mapbox-gl-snap)
-Blog Page :   [Read My Blog](https://akilic.com/blog/mapbox/mapbox-gl-js-snapping-geometries-layer-snap-module)
+
+Author Web Site : [Ali Kilic Blog Page](https://akilic.com)
+
+Project GitHub : [mapbox-gl-snap](https://github.com/gislayer/mapbox-gl-snap)
+
+Blog Page : [Read My Blog](https://akilic.com/blog/mapbox/mapbox-gl-js-snapping-geometries-layer-snap-module)
