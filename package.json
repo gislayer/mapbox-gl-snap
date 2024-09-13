@@ -1,6 +1,6 @@
 {
     "name": "mapbox-gl-snap",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "A utility to snap points to vertices, edges, or midpoints on a Mapbox GL JS.",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.esm.js",
@@ -22,7 +22,7 @@
         "turfjs",
         "typescript"
     ],
-    "author": "Ali Kilic | ali.kilic@gislayer.com",
+    "author": "Ali Kilic",
     "license": "MIT",
     "dependencies": {
         "@mapbox/mapbox-gl-draw": "^1.4.3",
@@ -45,5 +45,13 @@
         "@types/mapbox-gl": "^3.4.0",
         "rollup": "^4.21.3",
         "typescript": "^4.9.5"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gislayer/mapbox-gl-snap.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gislayer/mapbox-gl-snap/issues"
+    },
+    "homepage": "https://akilic.com/blog/mapbox/mapbox-gl-js-snapping-geometries-layer-snap-module"
 }
