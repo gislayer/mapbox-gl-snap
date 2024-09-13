@@ -25,7 +25,7 @@ Depending on whether you are using ES Modules (`import`) or CommonJS (`require`)
 ## Features
 
 - **Layer-Based Snapping**: Operates on specific layers, allowing you to snap only to the geometries within these layers.
-- **Rule-Based Snapping**: Allows snapping based on rules such as vertex, edge, or line middle. The snapping process respects these rules in order.
+- **Rule-Based Snapping**: Allows snapping based on rules such as vertex, edge, or line, polygon edge midpoint. The snapping process respects these rules in order.
 - **Dynamic Snap Radius**: The snap radius is configurable, allowing control over how close the points need to be for snapping to occur.
 
 ## TypeScript Declaration
@@ -45,7 +45,7 @@ declare module 'mapbox-gl-snap' {
 
   export interface MapboxSnapOptions {
     layers: string[];
-    rules: ('vertex' | 'edge' | 'middle')[];
+    rules: ('vertex' | 'edge' | 'midpoint')[];
     radius: number;
   }
 
@@ -109,7 +109,7 @@ map.on('style.load', () => {
     options: {
       layers: ['layer1', 'layer2'],  // Array of layer IDs to snap to
       radius: 15,  // Snap radius in pixels
-      rules: ['vertex', 'middle', 'edge']  // Snap rules
+      rules: ['vertex', 'midpoint', 'edge']  // Snap rules
     },
     onSnapped:(fc:FeatureCollection)=>{
       // use on here
@@ -124,10 +124,10 @@ map.on('style.load', () => {
   
 - **`rules`**: An array defining the snap rules, which are checked in order:
   - **`vertex`**: Snaps to the vertex points of the geometry.
-  - **`middle`**: Snaps to the middle points of lines.
+  - **`midpoint`**: Snaps to the midpoint of lines or polygon edges.
   - **`edge`**: Snaps to the edges of lines.
   
-  The rules are applied sequentially. For instance, with `rules: ['vertex', 'middle', 'edge']`, the snapping will first attempt to snap to a vertex. If a vertex is found, it will snap to that and stop. If not, it will proceed to check the middle and then the edge.
+  The rules are applied sequentially. For instance, with `rules: ['vertex', 'midpoint', 'edge']`, the snapping will first attempt to snap to a vertex. If a vertex is found, it will snap to that and stop. If not, it will proceed to check the middle and then the edge.
 
 ### 3. Customizing the Snap Process
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox GL JS Example</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.6.0/mapbox-gl.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.3/mapbox-gl-draw.css' type='text/css' />
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+    <script src="../dist/purejs/mapbox-gl-snap.js"></script>
+    <script src="./geometries.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+    // Set your Mapbox access token here
+    //mapboxgl.accessToken = 'add_you_apikey';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYWxpa2lsaWNoYXJpdGEiLCJhIjoiY2prcGpwajY4MnpqMDNxbXpmcnlrbWdneCJ9.0NaE-BID7eX38MDSY40-Qg';
+
+    // Initialize the map
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v11',
+        center: [-80.1974, 25.76470], // Miami coordinates
+        zoom: 16
+    });
+
+    // Add zoom and rotation controls to the map
+    map.addControl(new mapboxgl.NavigationControl());
+
+    // Add the Draw control for drawing on the map
+    const draw = new MapboxDraw({
+        displayControlsDefault: false,
+        controls: {
+            point: true,
+            line_string: true,
+            polygon: true,
+            trash: true
+        }
+    });
+    map.addControl(draw);
+
+    // Add example point, line, and polygon
+    map.on('load', function() {
+
+        map.addSource('example',{type:'geojson',data:geojson})
+        // Add a point
+        
+        map.addLayer({
+          'id': 'example-point',
+          'type': 'circle',
+          'source': 'example',
+          'paint': {
+              'circle-radius': 7,
+              'circle-color': '#ffeb3b'
+          },
+          'filter': ['==', '$type', 'Point'] // Sadece nokta geometrilerini gösterir
+      });
+      // Add a line
+      map.addLayer({
+          'id': 'example-line',
+          'type': 'line',
+          'source': 'example',
+          'layout': {
+              'line-join': 'round',
+              'line-cap': 'round'
+          },
+          'paint': {
+              'line-color': '#8bc34a',
+              'line-width': 5
+          },
+          'filter': ['==', '$type', 'LineString'] // Sadece çizgi geometrilerini gösterir
+      });
+
+      // Add a polygon
+      map.addLayer({
+          'id': 'polygons',
+          'type': 'fill',
+          'source': 'example',
+          'paint': {
+              'fill-color': '#9c27b0',
+              'fill-opacity': 0.5
+          },
+          'filter': ['==', '$type', 'Polygon'] // Sadece poligon geometrilerini gösterir
+      });
+
+     
+
+        
+        var snap = new MapboxSnap({
+          map: map,
+          drawing: draw,
+          options: {
+            layers: ['example-point', 'example-line', 'polygons'],  // Array of layer IDs to snap to
+            radius: 15,  // Snap radius in pixels
+            rules: ['vertex', 'midpoint', 'edge']  // Snap rules
+          },
+          onSnapped:(fc)=>{
+            debugger;
+          }
+      });
+    });
+
+</script>
+
+</body>
+</html>

@@ -62,6 +62,9 @@ var MapboxSnap = /** @class */ (function () {
                     var newFeature = this.doSnap(feature, snapEx);
                     arr.push(newFeature);
                 }
+                else {
+                    arr.push(feature);
+                }
             }
         }
         var fc = { type: 'FeatureCollection', features: arr };
@@ -291,7 +294,7 @@ var MapboxSnap = /** @class */ (function () {
         }
         return lines;
     };
-    MapboxSnap.prototype.searchInMidPoind = function (feature, mouse, radius) {
+    MapboxSnap.prototype.searchInMidPoint = function (feature, mouse, radius) {
         var lines = this.getLines(feature, mouse, radius);
         var segments = [];
         lines.map(function (line) {
@@ -331,27 +334,33 @@ var MapboxSnap = /** @class */ (function () {
             layers: this.options.layers,
         });
         if (features.length > 0) {
-            var mostClose = features[0];
-            var rules = this.options.rules;
-            var mouseCoord = e.lngLat;
             var snappedPoint;
             var isSnapped = false;
-            if (rules.indexOf('vertex') !== -1 && snappedPoint == undefined) {
-                snappedPoint = this.searchInVertex(mostClose, mouseCoord, radiusInMeters);
-                if (snappedPoint) {
-                    isSnapped = true;
+            for (var i = 0; i < features.length; i++) {
+                var mostClose = features[i];
+                var rules = this.options.rules;
+                var mouseCoord = e.lngLat;
+                isSnapped = false;
+                if (rules.indexOf('vertex') !== -1 && snappedPoint == undefined) {
+                    snappedPoint = this.searchInVertex(mostClose, mouseCoord, radiusInMeters);
+                    if (snappedPoint) {
+                        isSnapped = true;
+                        break;
+                    }
                 }
-            }
-            if (rules.indexOf('middle') !== -1 && snappedPoint == undefined) {
-                snappedPoint = this.searchInMidPoind(mostClose, mouseCoord, radiusInMeters);
-                if (snappedPoint) {
-                    isSnapped = true;
+                if (rules.indexOf('midpoint') !== -1 && snappedPoint == undefined) {
+                    snappedPoint = this.searchInMidPoint(mostClose, mouseCoord, radiusInMeters);
+                    if (snappedPoint) {
+                        isSnapped = true;
+                        break;
+                    }
                 }
-            }
-            if (rules.indexOf('edge') !== -1 && snappedPoint == undefined) {
-                snappedPoint = this.searchInEdge(mostClose, mouseCoord, radiusInMeters);
-                if (snappedPoint) {
-                    isSnapped = true;
+                if (rules.indexOf('edge') !== -1 && snappedPoint == undefined) {
+                    snappedPoint = this.searchInEdge(mostClose, mouseCoord, radiusInMeters);
+                    if (snappedPoint) {
+                        isSnapped = true;
+                        break;
+                    }
                 }
             }
             if (isSnapped) {

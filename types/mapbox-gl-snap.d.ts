@@ -10,7 +10,7 @@ declare module 'mapbox-gl-snap' {
 
   export interface MapboxSnapOptions {
     layers: string[];
-    rules: ('vertex' | 'edge' | 'middle')[];
+    rules: ('vertex' | 'edge' | 'midpoint')[];
     radius: number;
   }
 

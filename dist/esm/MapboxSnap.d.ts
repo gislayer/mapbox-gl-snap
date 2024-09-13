@@ -9,7 +9,7 @@ interface SpatialResult {
 }
 export interface MapboxSnapOptions {
     layers: string[];
-    rules: ('vertex' | 'edge' | 'middle')[];
+    rules: ('vertex' | 'edge' | 'midpoint')[];
     radius: number;
 }
 export interface MapboxSnapProps {
@@ -44,7 +44,7 @@ declare class MapboxSnap {
     drawingSnapCheck(): void;
     searchInVertex(feature: any, mouse: LngLat, radius: number): SpatialResult | undefined;
     getLines(feature: any, mouse: LngLat, radius: number): any[];
-    searchInMidPoind(feature: any, mouse: LngLat, radius: number): SpatialResult | undefined;
+    searchInMidPoint(feature: any, mouse: LngLat, radius: number): SpatialResult | undefined;
     searchInEdge(feature: any, mouse: LngLat, radius: number): SpatialResult | undefined;
     getCloseFeatures(e: MapMouseEvent, radiusInMeters: number): any;
     addRadiusCircleLayer(): void;
