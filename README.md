@@ -17,7 +17,7 @@ npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-snap
 Depending on whether you are using, Browser(`purejs`) ES Modules (`import`) or CommonJS (`require`), you should import the `MapboxSnap` library as follows:
 
 
-- **For ES Modules (`browser`)**:
+- **For Browser (`purejs`)**:
   ```javascript
   <script src="https://cdn.jsdelivr.net/gh/gislayer/mapbox-gl-snap/dist/purejs/mapbox-gl-snap.js"></script>
   ```
@@ -162,3 +162,6 @@ const mapboxSnap = new MapboxSnap({
 
 This project is licensed under the MIT License.
 Author: Ali Kilic - ali.kilic@gislayer.com
+Author Web Site :   [Ali Kilic Blog Page](https://akilic.com)
+Project GitHub :   [mapbox-gl-snap](https://github.com/gislayer/mapbox-gl-snap)
+Blog Page :   [Read My Blog](https://akilic.com/blog/mapbox/mapbox-gl-js-snapping-geometries-layer-snap-module)
