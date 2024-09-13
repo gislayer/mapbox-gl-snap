@@ -177,6 +177,21 @@ var MapboxSnap = /** @class */ (function () {
         this.map.on('mousemove', function (e) {
             _this.snapToClosestPoint(e);
         });
+        this.map.on('draw.delete', function (e) {
+            setTimeout(function () {
+                _this.changeSnappedPoints();
+            }, 100);
+        });
+        this.map.on('draw.update', function (e) {
+            setTimeout(function () {
+                _this.changeSnappedPoints();
+            }, 100);
+        });
+        this.map.on('draw.create', function (e) {
+            setTimeout(function () {
+                _this.changeSnappedPoints();
+            }, 100);
+        });
         this.map.on('draw.selectionchange', function (e) {
             if (e.features.length > 0) {
                 _this.status = true;
