@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-snap
+npm install mapbox-gl @mapbox/mapbox-gl-draw @turf/turf mapbox-gl-snap
 ```
 
 ## Importing the Library
